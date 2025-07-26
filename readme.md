@@ -1,1 +1,1 @@
-Hello world
+Some new notes are displayed here.
