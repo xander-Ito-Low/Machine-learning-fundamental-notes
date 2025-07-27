@@ -1,0 +1,106 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={K-Means},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{K-Means}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsection{Algorithm description}\label{algorithm-description}
+
+\textbf{Approach:} Cluster data by separate samples to n groups of equal
+variance.\\
+The objective is to minimise inertia (Within cluster sum of squares
+criterion).
+
+\textbf{Inertia criterion equation:}
+
+\textbf{Algorithm}
+
+\begin{enumerate}
+\tightlist
+\item
+  Choose centroids
+
+  loop until number of iterations is met\\
+  \strut \\
+  \textbf{Loop body}:
+\item
+  Assign each sample to its nearest centroid (label update step)
+
+  \hfill\break
+\item
+  Recompute centroids for the next iteration by taking mean of alll
+  samples assigned to each centroid.\\
+  \strut \\
+  If new centroids - old centroids is smaller than a threshold, break
+  out of the loop. If the inertia calculation from new centroids
+  isn\textquotesingle t smaller than current minimum
+  don\textquotesingle t reassign the centroids.
+\end{enumerate}
+
+\textbf{Scalability}: Scales well.
+
+\textbf{Disadvantages}:
+
+Clusters assumed to be convex and isotropic (Separable and of equal
+variance).
+
+That is to say, the algorithm will not perform well on clusters with
+irregular shapes/elongated clusters
+
+Inertia is not a normalised metric. In very high-dimensional spaces, can
+suffer from the curse of dimensionality
+
+\subsection{Coded algorithm with sample
+dataset}\label{coded-algorithm-with-sample-dataset}
+
+\end{document}
